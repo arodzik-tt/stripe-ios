@@ -130,6 +130,9 @@ class PaymentSheetViewController: UIViewController {
     }()
     private lazy var buyButton: ConfirmButton = {
         let callToAction: ConfirmButton.CallToActionType = {
+            if let title = configuration.primaryButtonLocalizedTitle {
+                return .custom(title: title)
+            }
             switch intent {
             case .paymentIntent(let paymentIntent):
                 return .pay(amount: paymentIntent.amount, currency: paymentIntent.currency)
@@ -333,7 +336,7 @@ class PaymentSheetViewController: UIViewController {
         var buyButtonStatus: ConfirmButton.Status
         var showBuyButton: Bool = true
 
-        var callToAction = self.intent.callToAction
+        var callToAction = self.buyButton.callToAction
         switch mode {
         case .selectingSaved:
             if case .applePay = savedPaymentOptionsViewController.selectedPaymentOption {

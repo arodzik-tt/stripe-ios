@@ -110,6 +110,9 @@ extension PaymentSheet {
             }
         }
 
+        /// The title of the Buy or Add button. Set if you want to override existing titles
+        public var primaryButtonLocalizedTitle: String?
+
         private var styleRawValue: Int = 0  // SheetStyle.automatic.rawValue
         /// The color styling to use for PaymentSheet UI
         /// Default value is SheetStyle.automatic
